@@ -16,11 +16,12 @@ const dbURL = process.env.MONGODB_URI || 'mongodb://localhost/DomoMaker';
 const mongooseOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 };
 
 mongoose.connect(dbURL, mongooseOptions, (err) => {
   if (err) {
-    console.log('Could not connect to database');
+    // console.log('Could not connect to database');
     throw err;
   }
 });
@@ -46,5 +47,5 @@ app.listen(port, (err) => {
   if (err) {
     throw err;
   }
-  console.log(`Listening on port ${port}`);
+  // console.log(`Listening on port ${port}`);
 });
