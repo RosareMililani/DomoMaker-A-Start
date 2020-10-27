@@ -21,7 +21,7 @@
     "Redis",
     "Login"
   ],
-  "author": "Mililani Rosare",
+  "author": "Cody Van De Mark",
   "license": "Apache 2.0",
   "devDependencies": {
     "@babel/cli": "^7.8.4",

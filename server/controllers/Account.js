@@ -10,9 +10,7 @@ const signupPage = (req, res) => {
   res.render('signup');
 };
 
-//destroy - remove a user's session
 const logout = (req, res) => {
-  req.session.destroy();
   res.redirect('/');
 };
 
@@ -32,9 +30,6 @@ const login = (request, response) => {
     if (err || !account) {
       return res.status(401).json({ error: 'Wrong username or password' });
     }
-
-    //store data in session about the user
-    req.session.account = Account.AccountModel.toAPI(account);
 
     return res.json({ redirect: '/maker' });
   });
@@ -68,14 +63,10 @@ const signup = (request, response) => {
 
     const savePromise = newAccount.save();
 
-    savePromise.then(() => {
-      //duplicate the account data in the session 
-      req.session.account = Account.AccountModel.toAPI(newAccount);
-      res.json({ redirect: '/maker' });
-    });
+    savePromise.then(() => res.json({ redirect: '/maker' }));
 
     savePromise.catch((err) => {
-      console.log(err);
+      // console.log(err);
 
       if (err.code === 11000) {
         return res.status(400).json({ error: 'Username already in use.' });
